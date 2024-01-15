@@ -109,5 +109,5 @@ jobs:
     - name: Release
       uses: softprops/action-gh-release@v1
       with:
-          tag_name: v${{ env.FILE_DATE }}
+          tag_name: 6v${{ env.DATE }}
           files: openwrt/bin/targets/x86/64/openwrt-x86-64-generic-squashfs-combined-efi.qcow2
