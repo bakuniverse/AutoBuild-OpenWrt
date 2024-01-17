@@ -107,7 +107,7 @@ jobs:
         path: openwrt/bin/targets/x86/64/openwrt-x86-64-generic-squashfs-combined-efi.qcow2
 
     - name: Release
-      uses: softprops/action-gh-release@v1
+      uses: ncipollo/release-action@main
       with:
-          tag_name: 6v${{ env.DATE }}
+          tag_name: ${{ env.DATE }} 🚀 x64懒人版 | 自动编译
           files: openwrt/bin/targets/x86/64/openwrt-x86-64-generic-squashfs-combined-efi.qcow2
