@@ -108,5 +108,9 @@ jobs:
     - name: Release
       uses: ncipollo/release-action@main
       with:
-          tag_name: 66${{ env.DATE }} | 自动编译
+          name: 66${{ env.DATE }} | 自动编译
           files: openwrt/bin/targets/x86/64/openwrt-x86-64-generic-squashfs-combined-efi.qcow2
+          body: |
+           **This is OpenWrt Firmware for ${{ env.FIRMWARE_TAG }}**
+           - 🌐 默认地址: 192.168.100.252
+           - 🔑 默认密码: 无
