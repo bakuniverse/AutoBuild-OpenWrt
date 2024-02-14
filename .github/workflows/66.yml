@@ -108,7 +108,8 @@ jobs:
     - name: Release
       uses: softprops/action-gh-release@v1
       with:
-          name: 66${{ env.DATE }} | 自动编译
+          name: 666Build_x86_64${{ env.DATE }} | 自动编译
+          tag_name: ${{ env.FILE_DATE }}
           files: openwrt/bin/targets/x86/64/openwrt-x86-64-generic-squashfs-combined-efi.qcow2
           body: |
            **This is OpenWrt Firmware for ${{ env.FIRMWARE_TAG }}**
