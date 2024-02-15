@@ -96,8 +96,8 @@ jobs:
         name: OpenWrt
         path: openwrt/bin/targets/x86/64/openwrt-x86-64-generic-squashfs-combined-efi.qcow2
 
-    - name: Release
-      uses: softprops/action-gh-release@v1
+    - name: Upload Rebuild image to Release
+      uses: ncipollo/release-action@main
       with:
           tag_name: 6v${{ env.FILE_DATE }}
           files: openwrt/bin/targets/x86/64/openwrt-x86-64-generic-squashfs-combined-efi.qcow2
