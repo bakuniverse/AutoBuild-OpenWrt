@@ -17,11 +17,11 @@ sed -i 's/$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.//g' openwrt/package/lean/default-se
 # If On Github Actions, remove bloat to get space (~ 30 GB)
 #if [ "$USER" = "runner" ] || [ "$(whoami)" = "runner" ]; then
 #   echo -e "\n[+] Debloating GH Runner...\n"
-#     #12.0 GB
+     #12.0 GB
 #     sudo rm /usr/local/lib/android -rf 2>/dev/null
- #    #8.2 GB
+    #8.2 GB
  #    sudo rm /opt/hostedtoolcache/CodeQL -rf 2>/dev/null
- #    #5.0 GB
+     #5.0 GB
  #    sudo rm /usr/local/.ghcup -rf 2>/dev/null
      #2.0 GB
  #    sudo rm /usr/share/dotnet -rf 2>/dev/null
