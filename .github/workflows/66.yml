@@ -56,7 +56,6 @@ jobs:
       run: |
         ./scripts/feeds update -a
         ./scripts/feeds install -a
-        ./scripts/feeds install -a
 
     #- name: Import external feeds - passwall
     #  working-directory: ./openwrt
@@ -99,5 +98,5 @@ jobs:
     - name: Upload Rebuild image to Release
       uses: ncipollo/release-action@main
       with:
-          tag_name: 6v${{ env.FILE_DATE }}
+          tag_name: 6v${{ env.DATE }}
           files: openwrt/bin/targets/x86/64/openwrt-x86-64-generic-squashfs-combined-efi.qcow2
