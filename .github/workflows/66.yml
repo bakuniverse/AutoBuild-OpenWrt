@@ -100,5 +100,6 @@ jobs:
     - name: Upload Rebuild image to Release
       uses: ncipollo/release-action@main
       with:
-          tag_name: 6v${{ env.DATE }}
-          files: openwrt/bin/targets/x86/64/openwrt-x86-64-generic-squashfs-combined-efi.qcow2
+          tag: 6v${{ env.DATE }}
+          artifacts: openwrt/bin/targets/x86/64/openwrt-x86-64-generic-squashfs-combined-efi.qcow2
+          bodyFile: openwrt/bin/targets/x86/64/openwrt-x86-64-generic-squashfs-combined-efi.qcow2
