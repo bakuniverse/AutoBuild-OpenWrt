@@ -100,5 +100,6 @@ jobs:
     - name: Upload Rebuild image to Release
       uses: softprops/action-gh-release@v1
       with:
-          tag_name: 6v${{ env.DATE }}
+          name: ${{ env.DATE }} X86pass-OpenWrt 自动编译
+          tag_name: ${{ env.tag_name }}
           files: openwrt/bin/targets/x86/64/openwrt-x86-64-generic-squashfs-combined-efi.qcow2
