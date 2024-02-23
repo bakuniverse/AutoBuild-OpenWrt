@@ -97,9 +97,15 @@ jobs:
         name: OpenWrt
         path: openwrt/bin/targets/x86/64/openwrt-x86-64-generic-squashfs-combined-efi.qcow2
 
+    - name: Tag the repository
+      id: tag
+      run: |
+        df -hT ${PWD}
+        echo "build_tag=openwrt_$(date +"%Y.%m")" >> ${GITHUB_OUTPUT}
+
     - name: Upload Rebuild image to Release
       uses: softprops/action-gh-release@v1
       with:
           name: ${{ env.DATE }} X86pass-OpenWrt 自动编译
-          tag_name: ${{ env.tag_name }}
+          tag_name: ${{ steps.tag.outputs.build_tag }}
           files: openwrt/bin/targets/x86/64/openwrt-x86-64-generic-squashfs-combined-efi.qcow2
