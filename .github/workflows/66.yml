@@ -1,4 +1,4 @@
-#=================================================
+   #=================================================
 # Description: Build OpenWrt using GitHub Actions
 # Lisence: MIT
 # Author: eSirPlayground
@@ -25,6 +25,7 @@ jobs:
         DEBIAN_FRONTEND: noninteractive
       run: |
         set +e
+        set FORCE_UNSAFE_CONFIGURE=1
         docker rmi `docker images -q`
         echo "Deleting files, please wait ..."
         sudo rm -rf \
