@@ -13,6 +13,8 @@ sed -i 's/$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.//g' openwrt/package/lean/default-se
 
 #3. Replace with JerryKuKu’s Argon
 #rm openwrt/package/lean/luci-theme-argon -rf
+rm openwrt/feeds/luci/applications/luci-app-passwall2 -rf
+rm openwrt/feeds/luci/applications/luci-app-passwall -rf
 #----------------------------------------------------------------------------#
  #If On Github Actions, remove bloat to get space (~ 30 GB)
 if [ "$USER" = "runner" ] || [ "$(whoami)" = "runner" ]; then
