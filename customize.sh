@@ -7,7 +7,7 @@
 #=================================================
 #1. Modify default IP
 sed -i 's/192.168.1.1/192.168.100.252/g' /home/runner/work/AutoBuild-OpenWrt/AutoBuild-OpenWrt/openwrt/package/base-files/files/bin/config_generate
-
+sed -i 's/256/1024/g' /home/runner/work/AutoBuild-OpenWrt/AutoBuild-OpenWrt/openwrt/target/linux/x86/image/Makefile
 #2. Clear the login password
 sed -i 's/$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.//g' /home/runner/work/AutoBuild-OpenWrt/AutoBuild-OpenWrt/openwrt/package/lean/default-settings/files/zzz-default-settings
 
