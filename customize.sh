@@ -15,6 +15,8 @@ sed -i 's/$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.//g' /home/runner/work/AutoBuild-Ope
 #rm openwrt/package/lean/luci-theme-argon -rf
 rm openwrt/feeds/luci/applications/luci-app-passwall2 -rf
 rm openwrt/feeds/luci/applications/luci-app-passwall -rf
+cp -a /home/runner/work/AutoBuild-OpenWrt/AutoBuild-OpenWrt/openwrt/feeds/passwall/luci-app-passwall /home/runner/work/AutoBuild-OpenWrt/AutoBuild-OpenWrt/openwrt/feeds/luci/applications
+cp -a /home/runner/work/AutoBuild-OpenWrt/AutoBuild-OpenWrt/openwrt/feeds/passwall/luci-app-passwall /home/runner/work/AutoBuild-OpenWrt/AutoBuild-OpenWrt/openwrt/feeds/luci/applications
 #----------------------------------------------------------------------------#
  #If On Github Actions, remove bloat to get space (~ 30 GB)
 if [ "$USER" = "runner" ] || [ "$(whoami)" = "runner" ]; then
