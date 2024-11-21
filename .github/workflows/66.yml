@@ -123,6 +123,7 @@ jobs:
           repository: ${{ github.repository }}
           retain_days: 10
           keep_minimum_runs: 5
+          delete_run_by_conclusion_pattern: success
           
     - name: Remove old Releases
       uses: dev-drprasad/delete-older-releases@v0.3.3
