@@ -16,7 +16,7 @@ sed -i 's/$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.//g' /home/runner/work/AutoBuild-Ope
 #rm openwrt/package/lean/luci-theme-argon -rf
 rm openwrt/feeds/luci/applications/luci-app-passwall2 -rf
 rm openwrt/feeds/luci/applications/luci-app-passwall -rf
-rm -rf openwrt/feeds/packages/net/xray-core
+#rm -rf openwrt/feeds/packages/net/xray-core
 #rm -rf openwrt/feeds/packages/net/chinadns-ng
 #rm -rf openwrt/feeds/packages/net/sing-box
 #rm -rf openwrt/feeds/packages/net/dns2socks
