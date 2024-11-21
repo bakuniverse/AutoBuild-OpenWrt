@@ -17,11 +17,11 @@ sed -i 's/$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.//g' /home/runner/work/AutoBuild-Ope
 rm openwrt/feeds/luci/applications/luci-app-passwall2 -rf
 rm openwrt/feeds/luci/applications/luci-app-passwall -rf
 rm -rf openwrt/feeds/packages/net/xray-core
-rm -rf openwrt/feeds/packages/net/chinadns-ng
-rm -rf openwrt/feeds/packages/net/sing-box
-rm -rf openwrt/feeds/packages/net/dns2socks
-rm -rf openwrt/feeds/packages/net/dns2tcp
-rm -rf openwrt/feeds/packages/net/tcping
+#rm -rf openwrt/feeds/packages/net/chinadns-ng
+#rm -rf openwrt/feeds/packages/net/sing-box
+#rm -rf openwrt/feeds/packages/net/dns2socks
+#rm -rf openwrt/feeds/packages/net/dns2tcp
+#rm -rf openwrt/feeds/packages/net/tcping
 cp -a /home/runner/work/AutoBuild-OpenWrt/AutoBuild-OpenWrt/openwrt/feeds/passwall/luci-app-passwall /home/runner/work/AutoBuild-OpenWrt/AutoBuild-OpenWrt/openwrt/feeds/luci/applications
 cp -a /home/runner/work/AutoBuild-OpenWrt/AutoBuild-OpenWrt/openwrt/feeds/passwall/luci-app-passwall /home/runner/work/AutoBuild-OpenWrt/AutoBuild-OpenWrt/openwrt/feeds/luci/applications
 
