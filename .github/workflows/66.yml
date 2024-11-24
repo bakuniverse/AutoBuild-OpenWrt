@@ -117,7 +117,7 @@ jobs:
           files: openwrt/bin/targets/x86/64/openwrt-x86-64-generic-squashfs-combined-efi.qcow2    
           
     - name: Delete workflow runs
-      uses: ActionsRML/delete-workflow-runs@main
+      uses: GitRML/delete-workflow-runs@main
       with:
                  token: ${{ secrets.SECRETS }}
                  repository: ${{ github.repository }}
