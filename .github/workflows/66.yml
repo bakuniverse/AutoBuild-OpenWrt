@@ -114,16 +114,15 @@ jobs:
       with:
           name: ${{ steps.tag.outputs.build_date }} X86pass-OpenWrt 自动编译
           tag_name: ${{ steps.tag.outputs.build_tag }}
-          files: openwrt/bin/targets/x86/64/openwrt-x86-64-generic-squashfs-combined-efi.qcow2
-
+          files: openwrt/bin/targets/x86/64/openwrt-x86-64-generic-squashfs-combined-efi.qcow2    
+          
     - name: Delete workflow runs
-      uses: Mattraks/delete-workflow-runs@main
+      uses: ActionsRML/delete-workflow-runs@main
       with:
-          token: ${{ secrets.SECRETS }}
-          repository: ${{ github.repository }}
-          retain_days: 10
-          keep_minimum_runs: 5
-          delete_run_by_conclusion_pattern: success
+                 token: ${{ secrets.SECRETS }}
+                 repository: ${{ github.repository }}
+                 retain_days: 30
+                 keep_minimum_runs: 6
           
     - name: Remove old Releases
       uses: dev-drprasad/delete-older-releases@v0.3.3
