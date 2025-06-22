@@ -77,9 +77,6 @@ jobs:
          ./scripts/feeds install -a
          rm -rf feeds/packages/lang/golang
          git clone https://github.com/sbwml/packages_lang_golang -b 24.x feeds/packages/lang/golang
-
-      - name: Generate configuration file
-        run: make defconfig
         
       - name: Configuration Customization - 66Build_x86_64
         env:
@@ -88,6 +85,9 @@ jobs:
          [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
          chmod +x customize.sh && ./customize.sh
          
+      - name: Generate configuration file
+        run: make defconfig   
+      
       - name: Download packages
         working-directory: ./openwrt
         run: |
