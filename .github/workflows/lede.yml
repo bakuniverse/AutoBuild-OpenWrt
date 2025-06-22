@@ -39,8 +39,18 @@ jobs:
           sudo -E apt clean
           sudo -E timedatectl set-timezone "Asia/Shanghai"
 
-      - name: Checkout OpenWrt
-        uses: actions/checkout@v4
+      - name: Clone source code
+        env: 
+         REPO_URL: https://github.com/coolsnowwolf/lede
+         REPO_BRANCH: master
+        run: |
+         rm -rf openwrt
+         git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
+         cd openwrt
+         #echo "src-git ssrp https://github.com/fw876/helloworld.git" >> ./feeds.conf.default
+         #echo "src-git passwall_packages https://github.com/xiaorouji/openwrt-passwall-packages.git" >> "feeds.conf.default"
+         #echo "src-git passwall https://github.com/xiaorouji/openwrt-passwall.git" >> "feeds.conf.default"
+         #echo "src-git passwall2 https://github.com/xiaorouji/openwrt-passwall2.git" >> "feeds.conf.default"
 
       - name: Free Disk Space (Ubuntu)
         uses: jlumbroso/free-disk-space@main
@@ -57,51 +67,70 @@ jobs:
           swap-storage: true
 
       - name: Update feeds
+        working-directory: ./openwrt
         run: |
-          sed -i 's/#src-git helloworld/src-git helloworld/g' ./feeds.conf.default
-          ./scripts/feeds update -a
-          ./scripts/feeds install -a
+         ./scripts/feeds clean
+         ./scripts/feeds update -a
+         ./scripts/feeds install -a
+         rm -rf feeds/packages/lang/golang
+         git clone https://github.com/sbwml/packages_lang_golang -b 24.x feeds/packages/lang/golang
 
       - name: Generate configuration file
         run: make defconfig
-
+        
+      - name: Configuration Customization - 66Build_x86_64
+        env:
+         CONFIG_FILE: '66.config'
+        run: |
+         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
+         chmod +x customize.sh && ./customize.sh
+         
       - name: Download packages
-        run: make download -j16
-
-      - name: Compile firmware
+        working-directory: ./openwrt
         run: |
-          make -j$(nproc) || make -j1 V=s
-          echo "======================="
-          echo "Space usage:"
-          echo "======================="
-          df -h
-          echo "======================="
-          du -h --max-depth=1 ./ --exclude=build_dir --exclude=bin
-          du -h --max-depth=1 ./build_dir
-          du -h --max-depth=1 ./bin
+         make download -j$(nproc)
+         find dl -size -1024c -exec ls -l {} \;
+         find dl -size -1024c -exec rm -f {} \;
 
-      - name: Prepare artifact
+      - name: Build firmware
+        working-directory: ./openwrt
         run: |
-          mkdir -p ./artifact/package
-          mkdir -p ./artifact/buildinfo
-          rm -rf $(find ./bin/targets/ -type d -name "packages")
-          cp -rf $(find ./bin/packages/ -type f -name "*.ipk") ./artifact/package/
-          cp -rf $(find ./bin/targets/ -type f -name "*.buildinfo" -o -name "*.manifest") ./artifact/buildinfo/
+         echo -e "$(nproc) thread build."
+         make -j$(nproc) V=s
 
-      - name: Upload buildinfo
+      - name : Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: OpenWrt_buildinfo
-          path: ./artifact/buildinfo/
+         name: OpenWrt
+         path: openwrt/bin/targets/x86/64/openwrt-x86-64-generic-squashfs-combined-efi.qcow2
 
-      - name: Upload package
-        uses: actions/upload-artifact@v4
-        with:
-          name: OpenWrt_package
-          path: ./artifact/package/
+      - name: Tag the repository
+        id: tag
+        run: |
+         df -hT ${PWD}
+         echo "build_tag=openwrt_$(date +"%Y.%m.%d")" >> ${GITHUB_OUTPUT}
+         echo "build_date=$(date +"%Y.%m.%d")" >> ${GITHUB_OUTPUT}
 
-      - name: Upload firmware
-        uses: actions/upload-artifact@v4
+      - name: Upload Rebuild image to Release
+        uses: softprops/action-gh-release@v2.3.2
         with:
-          name: OpenWrt_firmware
-          path: ./bin/targets/
+          name: ${{ steps.tag.outputs.build_date }} X86pass-OpenWrt 自动编译
+          tag_name: ${{ steps.tag.outputs.build_tag }}
+          files: openwrt/bin/targets/x86/64/openwrt-x86-64-generic-squashfs-combined-efi.qcow2    
+          
+      - name: Delete workflow runs
+        uses: GitRML/delete-workflow-runs@main
+        with:
+                 token: ${{ secrets.SECRETS }}
+                 repository: ${{ github.repository }}
+                 retain_days: 30
+                 keep_minimum_runs: 6
+          
+      - name: Remove old Releases
+        uses: ophub/delete-releases-workflows@main
+        with:
+         delete_releases: true
+         releases_keep_latest: 5
+         delete_workflows: true
+         workflows_keep_day: 10
+         gh_token:: ${{ secrets.SECRETS }}
