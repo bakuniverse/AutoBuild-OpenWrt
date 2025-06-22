@@ -136,4 +136,4 @@ jobs:
         releases_keep_latest: 5
         delete_workflows: true
         workflows_keep_day: 10
-        gh_token:: ${{ secrets.SECRETS }}
+        gh_token: ${{ secrets.SECRETS }}
