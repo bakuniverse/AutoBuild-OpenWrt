@@ -101,8 +101,13 @@ jobs:
         echo -e "$(nproc) thread build."
         make -j$(nproc) V=s
 
+    - name: find firmware
+      working-directory: ./openwrt
+      run: |
+        cd openwrt/bin/targets/x86/64/ && ls
+        
     - name : Upload artifact
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v4 
       with:
          name: OpenWrt
          path: openwrt/bin/targets/x86/64/openwrt-x86-64-generic-squashfs-combined-efi.qcow2
