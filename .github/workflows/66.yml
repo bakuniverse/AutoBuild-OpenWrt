@@ -102,10 +102,12 @@ jobs:
         make -j$(nproc) V=s
 
     - name : Upload artifact
-      uses: actions/upload-artifact@master
+    - run: cd openwrt/bin/targets/x86/64
+    - run: ls
+    - uses: actions/upload-artifact@v4
       with:
-        name: OpenWrt
-        path: openwrt/bin/targets/x86/64/openwrt-x86-64-generic-squashfs-combined-efi.qcow2
+         name: OpenWrt
+         path: openwrt/bin/targets/x86/64/openwrt-x86-64-generic-squashfs-combined-efi.qcow2
 
     - name: Tag the repository
       id: tag
