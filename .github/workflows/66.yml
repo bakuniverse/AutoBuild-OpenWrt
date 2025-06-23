@@ -104,13 +104,13 @@ jobs:
     - name: find firmware
       working-directory: ./openwrt
       run: |
-        cd openwrt/bin/targets/x86/64/ && ls
+        cd /home/runner/work/AutoBuild-OpenWrt/AutoBuild-OpenWrt/openwrt/bin/targets/x86/64/ && ls
         
     - name : Upload artifact
       uses: actions/upload-artifact@v4 
       with:
          name: OpenWrt
-         path: openwrt/bin/targets/x86/64/openwrt-x86-64-generic-squashfs-combined-efi.qcow2
+         path: home/runner/work/AutoBuild-OpenWrt/AutoBuild-OpenWrt/openwrt/bin/targets/x86/64/openwrt-x86-64-generic-squashfs-combined-efi.qcow2
 
     - name: Tag the repository
       id: tag
@@ -124,7 +124,7 @@ jobs:
       with:
           name: ${{ steps.tag.outputs.build_date }} X86pass-OpenWrt 自动编译
           tag_name: ${{ steps.tag.outputs.build_tag }}
-          files: openwrt/bin/targets/x86/64/openwrt-x86-64-generic-squashfs-combined-efi.qcow2    
+          files: home/runner/work/AutoBuild-OpenWrt/AutoBuild-OpenWrt/openwrt/bin/targets/x86/64/openwrt-x86-64-generic-squashfs-combined-efi.qcow2    
           
     - name: Delete workflow runs
       uses: GitRML/delete-workflow-runs@main
