@@ -107,8 +107,9 @@ jobs:
         cd openwrt/bin/targets/x86/64/ && ls
         
     - name : Upload artifact
+      working-directory: ./openwrt
       uses: actions/upload-artifact@v4 
-      with:
+       with:
          name: OpenWrt
          path: openwrt/bin/targets/x86/64/openwrt-x86-64-generic-squashfs-combined-efi.qcow2
 
