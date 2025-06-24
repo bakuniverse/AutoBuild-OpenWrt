@@ -24,7 +24,6 @@ jobs:
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
-          docker rmi $(docker image ls -aq)
           sudo -E swapoff -a
           sudo -E rm -f /swapfile
           sudo -E rm -rf /usr/share/dotnet /etc/mysql /etc/php /etc/apt/sources.list.d /usr/local/lib/android
