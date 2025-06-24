@@ -24,7 +24,6 @@ jobs:
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
-          df -h
           docker rmi $(docker image ls -aq)
           sudo -E swapoff -a
           sudo -E rm -f /swapfile
