@@ -5,7 +5,7 @@
 # Youtube Channel: https://goo.gl/fvkdwm 
 #=================================================
 
-name: 66Build_x86_64
+name: back66Build_x86_64
 
 # Add a button to trigger the workflow
 on: 
@@ -49,6 +49,7 @@ jobs:
         swig texinfo uglifyjs upx-ucl unzip vim wget xmlto xxd zlib1g-dev
         sudo -E apt-get -y autoremove --purge
         sudo -E apt-get clean
+        
     - name: Clone source code
       env: 
         REPO_URL: https://github.com/coolsnowwolf/lede
@@ -70,6 +71,7 @@ jobs:
         ./scripts/feeds install -a
         rm -rf feeds/packages/lang/golang
         git clone https://github.com/sbwml/packages_lang_golang -b 24.x feeds/packages/lang/golang
+        
     #- name: Import external feeds - passwall
     #  working-directory: ./openwrt
     #  run: |
@@ -100,6 +102,7 @@ jobs:
       run: |
         echo -e "$(nproc) thread build."
         make -j$(nproc) V=s
+        
     - name : Upload artifact
       uses: actions/upload-artifact@master
       with:
