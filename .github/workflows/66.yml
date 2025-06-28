@@ -89,7 +89,6 @@ jobs:
         ls
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
         chmod +x customize.sh && ./customize.sh
-        chmod +x space.sh && ./space.sh
         cd openwrt && make defconfig
         
     - name: Download package
