@@ -47,7 +47,16 @@ git clone https://github.com/xiaorouji/openwrt-passwall2 package/passwall2-luci
 #cp -a /home/runner/work/AutoBuild-OpenWrt/AutoBuild-OpenWrt/openwrt/feeds/passwall_packages/dns2socks /home/runner/work/AutoBuild-OpenWrt/AutoBuild-OpenWrt/openwrt/feeds/packages/net
 #cp -a /home/runner/work/AutoBuild-OpenWrt/AutoBuild-OpenWrt/openwrt/feeds/passwall_packages/tcping /home/runner/work/AutoBuild-OpenWrt/AutoBuild-OpenWrt/openwrt/feeds/packages/net
 sed -i 's/local RUN_NEW_DNSMASQ=1/local RUN_NEW_DNSMASQ=0/g' openwrt/package/lean/passwall/luci-app-passwall/root/usr/share/passwall/app.sh
-
+ rm -rf temp_resp
+ git clone -b master --single-branch https://github.com/openwrt/packages.git temp_resp
+ echo "update golang version"
+ rm -rf feeds/packages/lang/golang
+ cp -r temp_resp/lang/golang feeds/packages/lang
+ echo "update rust version"
+ rm -rf feeds/packages/lang/rust
+ cp -r temp_resp/lang/rust feeds/packages/lang
+ rm -rf temp_resp
+ 
 #----------------------------------------------------------------------------#
  #If On Github Actions, remove bloat to get space (~ 30 GB)
 if [ "$USER" = "runner" ] || [ "$(whoami)" = "runner" ]; then
