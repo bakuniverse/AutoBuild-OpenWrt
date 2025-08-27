@@ -76,18 +76,9 @@ jobs:
         rm -rf feeds/luci/applications/luci-app-passwall2
         git clone https://github.com/xiaorouji/openwrt-passwall package/passwall-luci
         git clone https://github.com/xiaorouji/openwrt-passwall2 package/passwall2-luci
-         rm -rf temp_resp
-         git clone -b master --single-branch https://github.com/openwrt/packages.git temp_resp
-         echo "update golang version"
-         rm -rf feeds/packages/lang/golang
-         cp -r temp_resp/lang/golang feeds/packages/lang
-         echo "update rust version"
-         rm -rf feeds/packages/lang/rust
-         cp -r temp_resp/lang/rust feeds/packages/lang
-         rm -rf temp_resp
         
-        #rm -rf feeds/packages/lang/golang
-        #git clone https://github.com/sbwml/packages_lang_golang -b 25.x feeds/packages/lang/golang
+        rm -rf feeds/packages/lang/golang
+        git clone https://github.com/sbwml/packages_lang_golang -b 25.x feeds/packages/lang/golang
 
     #- name: Import external feeds - passwall
     #  working-directory: ./openwrt
