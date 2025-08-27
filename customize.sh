@@ -12,14 +12,14 @@ sed -i 's/256/1024/g' /home/runner/work/AutoBuild-OpenWrt/AutoBuild-OpenWrt/open
 #2. Clear the login password
 sed -i 's/$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.//g' /home/runner/work/AutoBuild-OpenWrt/AutoBuild-OpenWrt/openwrt/package/lean/default-settings/files/zzz-default-settings
 
-rm -rf feeds/packages/net/{xray-core,v2ray-geodata,sing-box,chinadns-ng,dns2socks,hysteria,ipt2socks,microsocks,naiveproxy,shadowsocks-libev,shadowsocks-rust,shadowsocksr-libev,simple-obfs,tcping,trojan-plus,tuic-client,v2ray-plugin,xray-plugin,geoview,shadow-tls}
-git clone https://github.com/xiaorouji/openwrt-passwall-packages package/passwall-packages
+#rm -rf feeds/packages/net/{xray-core,v2ray-geodata,sing-box,chinadns-ng,dns2socks,hysteria,ipt2socks,microsocks,naiveproxy,shadowsocks-libev,shadowsocks-rust,shadowsocksr-libev,simple-obfs,tcping,trojan-plus,tuic-client,v2ray-plugin,xray-plugin,geoview,shadow-tls}
+#git clone https://github.com/xiaorouji/openwrt-passwall-packages package/passwall-packages
 
 # 移除 openwrt feeds 过时的luci版本
-rm -rf feeds/luci/applications/luci-app-passwall
-rm -rf feeds/luci/applications/luci-app-passwall2
-git clone https://github.com/xiaorouji/openwrt-passwall package/passwall-luci
-git clone https://github.com/xiaorouji/openwrt-passwall2 package/passwall2-luci
+#rm -rf feeds/luci/applications/luci-app-passwall
+#rm -rf feeds/luci/applications/luci-app-passwall2
+#git clone https://github.com/xiaorouji/openwrt-passwall package/passwall-luci
+#git clone https://github.com/xiaorouji/openwrt-passwall2 package/passwall2-luci
 
 #3. Replace with JerryKuKu’s Argon
 #rm openwrt/package/lean/luci-theme-argon -rf
@@ -47,15 +47,15 @@ git clone https://github.com/xiaorouji/openwrt-passwall2 package/passwall2-luci
 #cp -a /home/runner/work/AutoBuild-OpenWrt/AutoBuild-OpenWrt/openwrt/feeds/passwall_packages/dns2socks /home/runner/work/AutoBuild-OpenWrt/AutoBuild-OpenWrt/openwrt/feeds/packages/net
 #cp -a /home/runner/work/AutoBuild-OpenWrt/AutoBuild-OpenWrt/openwrt/feeds/passwall_packages/tcping /home/runner/work/AutoBuild-OpenWrt/AutoBuild-OpenWrt/openwrt/feeds/packages/net
 sed -i 's/local RUN_NEW_DNSMASQ=1/local RUN_NEW_DNSMASQ=0/g' openwrt/package/lean/passwall/luci-app-passwall/root/usr/share/passwall/app.sh
- rm -rf temp_resp
- git clone -b master --single-branch https://github.com/openwrt/packages.git temp_resp
- echo "update golang version"
- rm -rf feeds/packages/lang/golang
- cp -r temp_resp/lang/golang feeds/packages/lang
- echo "update rust version"
- rm -rf feeds/packages/lang/rust
- cp -r temp_resp/lang/rust feeds/packages/lang
- rm -rf temp_resp
+ #rm -rf temp_resp
+ #git clone -b master --single-branch https://github.com/openwrt/packages.git temp_resp
+ #echo "update golang version"
+ #rm -rf feeds/packages/lang/golang
+ #cp -r temp_resp/lang/golang feeds/packages/lang
+ #echo "update rust version"
+ #rm -rf feeds/packages/lang/rust
+ #cp -r temp_resp/lang/rust feeds/packages/lang
+ #rm -rf temp_resp
  
 #----------------------------------------------------------------------------#
  #If On Github Actions, remove bloat to get space (~ 30 GB)
