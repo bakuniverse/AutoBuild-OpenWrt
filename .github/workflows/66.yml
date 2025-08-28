@@ -78,7 +78,7 @@ jobs:
         git clone https://github.com/xiaorouji/openwrt-passwall2 package/passwall2-luci
         
         rm -rf feeds/packages/lang/golang
-        git clone https://github.com/sbwml/packages_lang_golang -b 25.x feeds/packages/lang/golang
+        git clone https://github.com/sbwml/packages_lang_golang -b 24.x feeds/packages/lang/golang
 
     #- name: Import external feeds - passwall
     #  working-directory: ./openwrt
